@@ -1,5 +1,6 @@
 {
   "name": "code-tester",
+  "type": "commonjs",
   "version": "0.0.1",
   "description": "code input and displayed output",
   "main": "index.js",
@@ -8,6 +9,7 @@
   "license": "ISC",
   "dependencies": {
     "nodemon": "^2.0.19",
+    "react": "^18.2.0",
     "typescript": "^4.7.4"
   }
 }

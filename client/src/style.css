@@ -1,5 +1,8 @@
 :root {
-    --red: #ed4321;
+    --red: #ed3737;
+    --green: #69ed69;
+    --purple: #ed37ed;
+
 }
 
 * {
@@ -24,7 +27,7 @@ body {
 }
 
 .header {
-    color: #37ed37;
+    color: var(--green);
     font-size: 2rem;
     width: 95vw;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -69,8 +72,64 @@ body {
     border: 2px solid #373737;
     background-color: #ffffff;
     flex: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+.display__loader {
+    align-items: center;
+    background-color: #adadff;
+    border-radius: 50%;
+    display: flex;
+    height: 200%;
+    justify-content: center;
+    left: -50%;
+    opacity: 1;
+    position: absolute;
+    top: -50%;
+    transition: transform .4s, opacity .2s;
+    width: 200%;
+}
+
+.display__loader--text {
+    align-items: center;
+    animation: loading 1s linear infinite;
+    background-color: var(--green);
+    border: 5px solid var(--purple);
+    border-radius: 50%;
+    color: var(--purple);
+    display: flex;
+    font-size: 1.7rem;
+    font-weight: 900;
+    height: 140px;
+    justify-content: center;
+    width: 140px;
 }
 
 .footer {
     color: #ededed;
+}
+
+.hide {
+    opacity: 0;
+}
+
+.shrink {
+    transform: scale(0);
+}
+
+.none {
+    display: none;
+}
+
+@keyframes loading {
+    0%, 50%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(30deg);
+    }
+    75% {
+        transform: rotate(-30deg);
+    }
 }

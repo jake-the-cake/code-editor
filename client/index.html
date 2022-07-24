@@ -17,13 +17,16 @@
         <div class="header">Code Editor App</div>
 
         <div class="window">
-            <div class="editor">
-                <textarea type="text" class="editor__input"></textarea>
+            <div class="editor" id="editor">
+                <textarea type="text" class="editor__input" id="input-area"></textarea>
                 <div class="editor__controls">
-                    <button>Update Code</button>
+                    <button class="editor__controls--button" id="update-code">Update Code</button>
                 </div>
             </div>
-            <div class="display">DISPLAY</div>
+            <div class="display" id="display">
+                <div class="display__loader" id="output-loader"><div class="display__loader--text">Working</div></div>
+                <div class="display__output" id="output-area"></div>
+            </div>
         </div>
 
         <div class="footer">c.2022 -- by Jake Thompson</div>
