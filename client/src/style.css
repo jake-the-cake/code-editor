@@ -1,0 +1,76 @@
+:root {
+    --red: #ed4321;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.page__container {
+    align-items: center;
+    background-color: #373737;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.header {
+    color: #37ed37;
+    font-size: 2rem;
+    width: 95vw;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 0px #ed37ed,
+                1px -1px 0px #ed37ed,
+                -1px -1px 0px #ed37ed,
+                -1px 1px 0px #ed37ed;
+}
+
+.window {
+    background-color: #ededed;
+    display: flex;
+    gap: .5rem;
+    height: 80vh;
+    padding: .5rem;
+    width: 95vw;
+}
+
+.editor {
+    display: flex;
+    flex: 4;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.editor__input {
+    background-color: #373737;
+    color: #ededed;
+    flex: 1;
+    font-family: 'Courier New', Courier, monospace;
+    padding: .5rem;
+}
+
+.editor__controls {
+    display: flex;
+    justify-items: space-between;
+}
+
+.display {
+    border: 2px solid #373737;
+    background-color: #ffffff;
+    flex: 1;
+}
+
+.footer {
+    color: #ededed;
+}
