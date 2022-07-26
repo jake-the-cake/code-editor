@@ -53,6 +53,7 @@ body {
     flex: 4;
     flex-direction: column;
     gap: 1rem;
+    transition:  flex .4s;
 }
 
 .editor__input {
@@ -74,6 +75,7 @@ body {
     flex: 1;
     overflow: hidden;
     position: relative;
+    transition:  flex .4s;
 }
 
 .display__loader {
