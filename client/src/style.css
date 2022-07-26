@@ -56,8 +56,39 @@ body {
     transition:  flex .4s;
 }
 
+.editor__selector {
+    align-items: center;
+    display: flex;
+    font-size: 1.3rem;
+    font-weight: 700;
+    justify-content: space-between;
+    margin-bottom: -1rem;
+}
+
+.editor__selector--label {
+    margin-right: 2rem;
+}
+
+.editor__selector--tab {
+    background-color: #adadff;
+    border: 1px solid #373737;
+    border-radius: .5rem .5rem 0px 0px;
+    cursor: pointer;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    padding: .7rem 1rem;
+
+}
+
+.active-tab {
+    background-color: #ed37ed;
+    color: #ededed;
+}
+
 .editor__input {
     background-color: #373737;
+    border: none;
     color: #ededed;
     flex: 1;
     font-family: 'Courier New', Courier, monospace;
@@ -67,6 +98,23 @@ body {
 .editor__controls {
     display: flex;
     justify-items: space-between;
+}
+
+.editor__controls--button {
+    background-color: var(--green);
+    border: 3px solid var(--red);
+    border-radius: 1rem;
+    color: #ededed;
+    cursor: pointer;
+    font-size: 1.3rem;
+    font-weight: 700;
+    padding: .5rem 1.4rem;
+    text-shadow: 0px 0px 10px #373737,
+                1px 1px 0px var(--red),
+                1px -1px 0px var(--red),
+                -1px -1px 0px var(--red),
+                -1px 1px 0px var(--red);
+        
 }
 
 .display {
@@ -122,6 +170,10 @@ body {
 
 .none {
     display: none;
+}
+
+.full-width {
+    width: 100%;
 }
 
 @keyframes loading {
