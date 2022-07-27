@@ -78,7 +78,10 @@ body {
     flex: 1;
     justify-content: center;
     padding: .7rem 1rem;
+}
 
+.editor__selector--tab:hover {
+    opacity: .7;
 }
 
 .active-tab {

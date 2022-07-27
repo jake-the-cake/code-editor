@@ -20,13 +20,16 @@ let jsContent = ''
 let currentContent: string
 
 const tabs = [
-    [htmlTab, htmlContent],
-    [cssTab, cssContent],
-    [jsTab, jsContent]
+    [htmlTab, ''],
+    [cssTab, ''],
+    [jsTab, '']
 ]
+
+let activeTab: HTMLElement | null = tabs[0][0] as HTMLElement
 
 let isLoading: boolean = true
 let isWorking: boolean = false
+let isDisplayed: boolean = false
 
 /*  ::: Loading widget  */
 //////////////////////////////////////////
@@ -48,9 +51,24 @@ const handleUpdateCode = (event: Event) => {
         isWorking = true
         display!.style.flex = '4'
         editor!.style.flex = '1'
+        input!.style.pointerEvents = 'none'
+        selector!.style.pointerEvents = 'none'
         editActive?.classList.toggle('none')
         updateActive?.classList.toggle('none')
         loader?.classList.toggle('none')
+        switch (activeTab!.id) {
+            case 'html-tab':
+                tabs[0][1] = input.value
+                break
+            case 'css-tab':
+                tabs[1][1] = input.value
+                break
+            case 'js-tab':
+                tabs[2][1] = input.value
+                break
+            default:
+                break
+        }
         toggleOutputLoader()
         // const code = input!.value
         const code = `<style>${tabs[1][1]}</style>${tabs[0][1]}<script>${tabs[2][1]}</script>`
@@ -58,6 +76,7 @@ const handleUpdateCode = (event: Event) => {
         console.log(code)
         isLoading = true
         isWorking = false
+        isDisplayed = true
     } else console.log('first')
 }
 update?.addEventListener('click', handleUpdateCode)
@@ -69,18 +88,22 @@ const handleEditCode = (event: Event) => {
         isWorking = true
         event.preventDefault()
         editActive?.classList.toggle('none')
+        input!.style.pointerEvents = 'auto'
+        selector!.style.pointerEvents = 'auto'
         updateActive?.classList.toggle('none')
         display!.style.flex = '1'
         editor!.style.flex = '4'
         input?.focus()
         isWorking = false
+        isDisplayed = false
     } else console.log('second')
 }
 edit?.addEventListener('click', handleEditCode)
 
 /*  ::: Functionality of switching tabs */
 //////////////////////////////////////////
-const handleTabSwitch = (event: Event) => {
+const handleTabSwitch = (event: any) => {
+    console.log(event)
     let wasActive: HTMLElement | null
     const changeActiveTab = (active: HTMLElement | null) => {
         const inactive: any[] = tabs.filter(tab => tab[0] !== active)
@@ -99,26 +122,47 @@ const handleTabSwitch = (event: Event) => {
                 t[1] = input.value
             }
         })
+        activeTab = active
+        currentContent = tabs[idx][1] as string
     }
+    let idx: number
     switch (event.target) {
         case htmlTab:
+            idx = 0
             changeActiveTab(htmlTab)
-            changeActiveContent(htmlTab, 0)
-            currentContent = tabs[0][1] as string
+            changeActiveContent(htmlTab, idx)
             break
         case cssTab:
+            idx = 1
             changeActiveTab(cssTab)
-            changeActiveContent(cssTab, 1)
-            currentContent = tabs[1][1] as string
+            changeActiveContent(cssTab, idx)
             break
         case jsTab:
+            idx = 2
             changeActiveTab(jsTab)
-            changeActiveContent(jsTab, 2)
-            currentContent = tabs[2][1] as string
+            changeActiveContent(jsTab, idx)
             break
         default:
             break
     }
     input.value = currentContent
+    input.focus()
 }
 selector?.addEventListener('click', handleTabSwitch)
+
+editor?.addEventListener('click', (event) => {
+    event.preventDefault()
+    const target = event.target as HTMLElement
+    console.log(target)
+    if (target !== update && isDisplayed === true) {
+        handleEditCode(event)
+        if (target === htmlTab || target === cssTab || target === jsTab) {
+            handleTabSwitch({target: target})
+        }
+    }
+})
+
+input.addEventListener('keypress', (event) => {
+    event.preventDefault()
+    input.value += event.key
+})
