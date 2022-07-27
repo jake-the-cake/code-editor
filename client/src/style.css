@@ -89,6 +89,7 @@ body {
 .editor__input {
     background-color: #373737;
     border: none;
+    border-radius: .5rem 0px .5rem .5rem;
     color: #ededed;
     flex: 1;
     font-family: 'Courier New', Courier, monospace;
