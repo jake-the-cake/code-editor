@@ -48,8 +48,10 @@ const handleUpdateCode = (event) => {
         updateActive === null || updateActive === void 0 ? void 0 : updateActive.classList.toggle('none');
         loader === null || loader === void 0 ? void 0 : loader.classList.toggle('none');
         toggleOutputLoader();
-        const code = input.value;
+        // const code = input!.value
+        const code = `<style>${tabs[1][1]}</style>${tabs[0][1]}<script>${tabs[2][1]}</script>`;
         out.innerHTML = code;
+        console.log(code);
         isLoading = true;
         isWorking = false;
     }
