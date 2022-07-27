@@ -12,6 +12,7 @@ const selector = document.getElementById('selector');
 const htmlTab = document.getElementById('html-tab');
 const cssTab = document.getElementById('css-tab');
 const jsTab = document.getElementById('js-tab');
+input.value = '';
 let htmlContent = '';
 let cssContent = '';
 let jsContent = '';
@@ -92,7 +93,7 @@ const handleTabSwitch = (event) => {
         const inactive = tabs.filter(tab => tab[0] !== active);
         inactive.forEach((t, i) => {
             if (wasActive === t[0]) {
-                tabs[idx][1] = input.value;
+                t[1] = input.value;
             }
         });
     };
@@ -101,30 +102,16 @@ const handleTabSwitch = (event) => {
             changeActiveTab(htmlTab);
             changeActiveContent(htmlTab, 0);
             currentContent = tabs[0][1];
-            // currentContent = htmlContent
             break;
         case cssTab:
             changeActiveTab(cssTab);
             changeActiveContent(cssTab, 1);
-            // if (wasActive === htmlTab) {
-            //     htmlContent = input.value
-            // }
-            // else if (wasActive === jsTab) {
-            //     jsContent = input.value
-            // }
             currentContent = tabs[1][1];
             break;
         case jsTab:
             changeActiveTab(jsTab);
             changeActiveContent(jsTab, 2);
-            // if (wasActive === htmlTab) {
-            //     htmlContent = input.value
-            // }
-            // else if (wasActive === cssTab) {
-            //     cssContent = input.value
-            // }
             currentContent = tabs[2][1];
-            // currentContent = jsContent
             break;
         default:
             break;

@@ -1,5 +1,3 @@
-
-
 const out: HTMLElement | null = document.getElementById('output-area') as HTMLDivElement
 const loader = document.getElementById('output-loader')
 const update = document.getElementById('update-code')
@@ -14,11 +12,12 @@ const htmlTab = document.getElementById('html-tab')
 const cssTab = document.getElementById('css-tab')
 const jsTab = document.getElementById('js-tab')
 
+input.value = ''
 
 let htmlContent = ''
 let cssContent = ''
 let jsContent = ''
-let currentContent: string | HTMLElement | null
+let currentContent: string
 
 const tabs = [
     [htmlTab, htmlContent],
@@ -26,8 +25,8 @@ const tabs = [
     [jsTab, jsContent]
 ]
 
-let isLoading = true
-let isWorking = false
+let isLoading: boolean = true
+let isWorking: boolean = false
 
 /*  ::: Loading widget  */
 //////////////////////////////////////////
@@ -95,7 +94,7 @@ const handleTabSwitch = (event: Event) => {
         const inactive = tabs.filter(tab => tab[0] !== active)
         inactive.forEach((t,i) => {
             if (wasActive === t[0]) {
-                tabs[idx][1] = input.value
+                t[1] = input.value
             }
         })
     }
@@ -103,35 +102,21 @@ const handleTabSwitch = (event: Event) => {
         case htmlTab:
             changeActiveTab(htmlTab)
             changeActiveContent(htmlTab, 0)
-            currentContent = tabs[0][1]
-            // currentContent = htmlContent
+            currentContent = tabs[0][1] as string
             break
         case cssTab:
             changeActiveTab(cssTab)
             changeActiveContent(cssTab, 1)
-            // if (wasActive === htmlTab) {
-            //     htmlContent = input.value
-            // }
-            // else if (wasActive === jsTab) {
-            //     jsContent = input.value
-            // }
-            currentContent = tabs[1][1]
+            currentContent = tabs[1][1] as string
             break
         case jsTab:
             changeActiveTab(jsTab)
             changeActiveContent(jsTab, 2)
-            // if (wasActive === htmlTab) {
-            //     htmlContent = input.value
-            // }
-            // else if (wasActive === cssTab) {
-            //     cssContent = input.value
-            // }
-            currentContent = tabs[2][1]
-            // currentContent = jsContent
+            currentContent = tabs[2][1] as string
             break
         default:
             break
     }
-    input.value = currentContent as string
+    input.value = currentContent
 }
 selector?.addEventListener('click', handleTabSwitch)
