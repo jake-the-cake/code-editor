@@ -1,0 +1,25 @@
+body {
+
+}
+
+.div {
+
+}
+
+.par {
+
+}
+
+.link {
+
+}
+
+.ugly {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+li {
+    list-style: none;
+}
