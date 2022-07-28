@@ -1,15 +1,13 @@
 {
   "name": "code-tester",
   "type": "commonjs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "code input and displayed output",
   "main": "index.js",
   "repository": "https://www.github.com/jake-the-cake/code-editor",
   "author": "Jake Thompson",
   "license": "ISC",
   "dependencies": {
-    "nodemon": "^2.0.19",
-    "react": "^18.2.0",
     "typescript": "^4.7.4"
   }
 }

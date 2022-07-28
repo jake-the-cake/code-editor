@@ -1,16 +1,17 @@
 const out: HTMLElement | null = document.getElementById('output-area') as HTMLDivElement
-const loader = document.getElementById('output-loader')
-const update = document.getElementById('update-code')
-const updateActive = document.getElementById('control-update')
-const editActive = document.getElementById('control-edit')
-const edit = document.getElementById('edit-code')
-const display = document.getElementById('display')
-const editor = document.getElementById('editor')
-const input = document.getElementById('input-area') as HTMLTextAreaElement
-const selector = document.getElementById('selector')
-const htmlTab = document.getElementById('html-tab')
-const cssTab = document.getElementById('css-tab')
-const jsTab = document.getElementById('js-tab')
+const loader: HTMLElement | null = document.getElementById('output-loader')
+const update: HTMLElement | null = document.getElementById('update-code')
+const updateActive: HTMLElement | null = document.getElementById('control-update')
+const editActive: HTMLElement | null = document.getElementById('control-edit')
+const edit: HTMLElement | null = document.getElementById('edit-code')
+const display: HTMLElement | null = document.getElementById('display')
+const editor: HTMLElement | null = document.getElementById('editor')
+const input: HTMLTextAreaElement | null = document.getElementById('input-area') as HTMLTextAreaElement
+const selector: HTMLElement | null = document.getElementById('selector')
+const htmlTab: HTMLElement | null = document.getElementById('html-tab')
+const cssTab: HTMLElement | null = document.getElementById('css-tab')
+const jsTab: HTMLElement | null = document.getElementById('js-tab')
+const iframe: HTMLIFrameElement | null = document.getElementById('iframe') as HTMLIFrameElement
 
 input.value = ''
 
@@ -52,7 +53,9 @@ const handleUpdateCode = (event: Event) => {
         display!.style.flex = '4'
         editor!.style.flex = '1'
         input!.style.pointerEvents = 'none'
+        input!.style.filter = 'blur(2px)'
         selector!.style.pointerEvents = 'none'
+        selector!.style.filter = 'blur(2px)'
         editActive?.classList.toggle('none')
         updateActive?.classList.toggle('none')
         loader?.classList.toggle('none')
@@ -70,9 +73,8 @@ const handleUpdateCode = (event: Event) => {
                 break
         }
         toggleOutputLoader()
-        // const code = input!.value
-        const code = `<style>${tabs[1][1]}</style>${tabs[0][1]}<script>${tabs[2][1]}</script>`
-        out.innerHTML = code
+        const code = `<html><head><style>${tabs[1][1]}</style></head><body>${tabs[0][1]}<script>${tabs[2][1]}</script></body></html>`
+        iframe.srcdoc = code
         console.log(code)
         isLoading = true
         isWorking = false
@@ -89,6 +91,8 @@ const handleEditCode = (event: Event) => {
         event.preventDefault()
         editActive?.classList.toggle('none')
         input!.style.pointerEvents = 'auto'
+        input!.style.filter = 'none'
+        selector!.style.filter = 'none'
         selector!.style.pointerEvents = 'auto'
         updateActive?.classList.toggle('none')
         display!.style.flex = '1'
@@ -103,7 +107,6 @@ edit?.addEventListener('click', handleEditCode)
 /*  ::: Functionality of switching tabs */
 //////////////////////////////////////////
 const handleTabSwitch = (event: any) => {
-    console.log(event)
     let wasActive: HTMLElement | null
     const changeActiveTab = (active: HTMLElement | null) => {
         const inactive: any[] = tabs.filter(tab => tab[0] !== active)

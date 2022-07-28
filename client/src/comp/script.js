@@ -12,6 +12,7 @@ const selector = document.getElementById('selector');
 const htmlTab = document.getElementById('html-tab');
 const cssTab = document.getElementById('css-tab');
 const jsTab = document.getElementById('js-tab');
+const iframe = document.getElementById('iframe');
 input.value = '';
 let htmlContent = '';
 let cssContent = '';
@@ -47,7 +48,9 @@ const handleUpdateCode = (event) => {
         display.style.flex = '4';
         editor.style.flex = '1';
         input.style.pointerEvents = 'none';
+        input.style.filter = 'blur(2px)';
         selector.style.pointerEvents = 'none';
+        selector.style.filter = 'blur(2px)';
         editActive === null || editActive === void 0 ? void 0 : editActive.classList.toggle('none');
         updateActive === null || updateActive === void 0 ? void 0 : updateActive.classList.toggle('none');
         loader === null || loader === void 0 ? void 0 : loader.classList.toggle('none');
@@ -65,9 +68,8 @@ const handleUpdateCode = (event) => {
                 break;
         }
         toggleOutputLoader();
-        // const code = input!.value
-        const code = `<style>${tabs[1][1]}</style>${tabs[0][1]}<script>${tabs[2][1]}</script>`;
-        out.innerHTML = code;
+        const code = `<html><head><style>${tabs[1][1]}</style></head><body>${tabs[0][1]}<script>${tabs[2][1]}</script></body></html>`;
+        iframe.srcdoc = code;
         console.log(code);
         isLoading = true;
         isWorking = false;
@@ -85,6 +87,8 @@ const handleEditCode = (event) => {
         event.preventDefault();
         editActive === null || editActive === void 0 ? void 0 : editActive.classList.toggle('none');
         input.style.pointerEvents = 'auto';
+        input.style.filter = 'none';
+        selector.style.filter = 'none';
         selector.style.pointerEvents = 'auto';
         updateActive === null || updateActive === void 0 ? void 0 : updateActive.classList.toggle('none');
         display.style.flex = '1';
@@ -100,7 +104,6 @@ edit === null || edit === void 0 ? void 0 : edit.addEventListener('click', handl
 /*  ::: Functionality of switching tabs */
 //////////////////////////////////////////
 const handleTabSwitch = (event) => {
-    console.log(event);
     let wasActive;
     const changeActiveTab = (active) => {
         const inactive = tabs.filter(tab => tab[0] !== active);
