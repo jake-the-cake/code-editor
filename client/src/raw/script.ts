@@ -73,9 +73,21 @@ const handleUpdateCode = (event: Event) => {
                 break
         }
         toggleOutputLoader()
-        const code = `<html><head><style>${tabs[1][1]}</style></head><body>${tabs[0][1]}<script>${tabs[2][1]}</script></body></html>`
+        const code = `
+            <html>
+                <head>
+                    <style>
+                        ${tabs[1][1]}
+                    </style>
+                </head>
+                <body>
+                    ${tabs[0][1]}
+                    <script>
+                        ${tabs[2][1]}
+                    </script>
+                </body>
+            </html>`
         iframe.srcdoc = code
-        console.log(code)
         isLoading = true
         isWorking = false
         isDisplayed = true
@@ -153,19 +165,10 @@ const handleTabSwitch = (event: any) => {
 }
 selector?.addEventListener('click', handleTabSwitch)
 
-editor?.addEventListener('click', (event) => {
+editor?.addEventListener('click', (event: MouseEvent) => {
     event.preventDefault()
-    const target = event.target as HTMLElement
-    console.log(target)
+    const target: HTMLElement = event.target as HTMLElement
     if (target !== update && isDisplayed === true) {
         handleEditCode(event)
-        if (target === htmlTab || target === cssTab || target === jsTab) {
-            handleTabSwitch({target: target})
-        }
     }
-})
-
-input.addEventListener('keypress', (event) => {
-    event.preventDefault()
-    input.value += event.key
 })

@@ -19,18 +19,19 @@ body {
     background-color: #373737;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
     justify-content: center;
     min-height: 100vh;
     overflow-x: hidden;
+    padding-bottom: 2.5rem;
     width: 100%;
 }
 
 .header {
     color: var(--green);
-    font-size: 2rem;
+    font-size: 1.6rem;
     width: 95vw;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     font-weight: 900;
     letter-spacing: 2px;
     text-shadow: 1px 1px 0px #ed37ed,
@@ -59,10 +60,10 @@ body {
 .editor__selector {
     align-items: center;
     display: flex;
-    font-size: 1.3rem;
+    font-size: .9rem;
     font-weight: 700;
     justify-content: space-between;
-    margin-bottom: -1rem;
+    margin-bottom: -1.2rem;
 }
 
 .editor__selector--label {
@@ -96,6 +97,7 @@ body {
     color: #ededed;
     flex: 1;
     font-family: 'Courier New', Courier, monospace;
+    outline: none;
     padding: .5rem;
 }
 
@@ -162,7 +164,15 @@ body {
 }
 
 .footer {
-    color: #ededed;
+    color: #373737;
+    width: 100%;
+    font-size: .8rem;
+    display: flex;
+    justify-content: space-between;
+    background-color: #ededed;
+    position: absolute;
+    bottom: 0px;
+    padding: .5rem 1rem;
 }
 
 .hide {
@@ -195,5 +205,11 @@ iframe {
     }
     75% {
         transform: rotate(-30deg);
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .display, .editor {
+        flex: 1 !important;
     }
 }

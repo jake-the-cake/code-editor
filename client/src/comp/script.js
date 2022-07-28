@@ -68,9 +68,21 @@ const handleUpdateCode = (event) => {
                 break;
         }
         toggleOutputLoader();
-        const code = `<html><head><style>${tabs[1][1]}</style></head><body>${tabs[0][1]}<script>${tabs[2][1]}</script></body></html>`;
+        const code = `
+            <html>
+                <head>
+                    <style>
+                        ${tabs[1][1]}
+                    </style>
+                </head>
+                <body>
+                    ${tabs[0][1]}
+                    <script>
+                        ${tabs[2][1]}
+                    </script>
+                </body>
+            </html>`;
         iframe.srcdoc = code;
-        console.log(code);
         isLoading = true;
         isWorking = false;
         isDisplayed = true;
@@ -153,15 +165,7 @@ selector === null || selector === void 0 ? void 0 : selector.addEventListener('c
 editor === null || editor === void 0 ? void 0 : editor.addEventListener('click', (event) => {
     event.preventDefault();
     const target = event.target;
-    console.log(target);
     if (target !== update && isDisplayed === true) {
         handleEditCode(event);
-        if (target === htmlTab || target === cssTab || target === jsTab) {
-            handleTabSwitch({ target: target });
-        }
     }
-});
-input.addEventListener('keypress', (event) => {
-    event.preventDefault();
-    input.value += event.key;
 });
